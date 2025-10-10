@@ -86,14 +86,17 @@
                     </div>
                 </div>
             </div>
-
+            <!-- Menu mobile-->
             <div class="md:hidden" x-show="open" x-on:click.away="open = false">
                 <div class="px-2 pt-2 pb-3 space-y-1">
-                    <template x-for="link in ['home', 'experience', 'skills', 'portfolio', 'certifications']" :key="link">
+                    <template x-for="link in ['home', 'experience', 'skills', 'portfolio']" :key="link">
                         <a href="#" x-on:click.prevent="activeLink = link; $nextTick(() => open = false); document.getElementById(link).scrollIntoView({ behavior: 'smooth' });"
                             x-bind:class="{ 'block px-3 py-2 text-base font-medium text-yellow-400 bg-gray-900 rounded-md nav-options nav-link js-scroll-trigger': true, 'bg-red-700 text-yellow-300': activeLink === link }"
                             x-text="link.charAt(0).toUpperCase() + link.slice(1)" aria-current="page"></a>
                     </template>
+                    <a href="https://docs.jimmytzuc.com/" target="_blank" class="block px-3 py-2 text-base font-medium text-yellow-400 bg-gray-900 rounded-md nav-options nav-link js-scroll-trigger" x-bind:class="{ 'bg-red-700 text-yellow-300': activeLink === 'cv' }" aria-current="page">
+                        Blog
+                    </a>
                     <a href="https://drive.google.com/file/d/1JeU1hMg1gzAX1L6ziIycOLGl0uGeRKc1/view" target="_blank"
                         class="block px-3 py-2 text-base font-medium text-yellow-400 bg-gray-900 rounded-md nav-options nav-link js-scroll-trigger"
                         x-bind:class="{ 'bg-red-700 text-yellow-300': activeLink === 'cv' }" aria-current="page">My CV</a>
@@ -108,19 +111,19 @@
         <section class="flex items-center justify-center w-full pt-10" id="about">
             <div class="text-center sm:pt-32 lg:pt-5">
                 <div class="flex flex-wrap items-center justify-center">
-                    <div class="container flex justify-center py-8">
+                    <div class="container flex justify-center py-10">
                         <figure class="">
                             <img class="block border-2 border-yellow-500 rounded-full h-72"
                             src="assets/img/jimmytzuc.png" alt="JimmyTzuc">
                         </figure>
                     </div>
-                    <div class="container">
+                    <div class="container px-10">
                         <h1 class="pb-2 text-4xl font-bold text-red-500 md:text-4xl">
                             Jimmy
                             <span class="text-yellow-400 text-primary">Tzuc</span>
                         </h1>
                         <div class="py-5">
-                            <p class="text-xl leading-relaxed text-left text-gray-400">
+                            <p class="text-xl leading-relaxed text-justify text-gray-400">
                                 I am a software developer from Yucatán and a native speaker of the Mayan language. With over five years of experience in backend development, I have contributed to consulting firms and technology startups, participating in the design of scalable solutions and supporting critical production systems.
                                 <br> <br>
                                 My technical expertise includes Python (Django, FastAPI, Flask), REST and GraphQL API design, and database management with Oracle, PostgreSQL, and MySQL. I also have strong experience working with Docker containers, CI/CD pipelines, and cloud services such as AWS.
@@ -137,7 +140,7 @@
                                 <br> <br>
                                 I am passionate about solving complex problems, writing clear and maintainable documentation, and collaborating within agile teams. I firmly believe that continuous learning is essential to delivering meaningful value in every project.
                             </p>
-                            <p class="px-10 py-10 text-xl leading-relaxed text-justify text-red-600">
+                            <p class="py-10 text-xl leading-relaxed text-justify text-red-600">
                                 This site showcases part of my professional journey and personal projects. If you would like to learn more about my work, you are welcome to explore my <a class="text-yellow-400" href="https://docs.jimmytzuc.com/" target="_blank">blog</a>  and <a class="text-yellow-400" href="https://github.com/JimmyTzuc" target="_blank">repositories</a>.
                             </p>
                             
@@ -169,7 +172,7 @@
         </section>
         <hr class="border-indigo-900">
         <!-- Experience-->
-        <section class="w-full px-10 py-14" id="experience">
+        <section class="w-full px-10 py-14 " id="experience">
             <div class="flex flex-col items-center justify-center pb-10 pt-14">
                 <h2 class="text-3xl font-bold text-yellow-400">Experience</h2>
                 <p class="flex items-center justify-center text-center text-gray-400">Here you will find the complete record of my work experience throughout my career. <br> From my early beginnings to my most recent roles, each experience has contributed to my professional growth.</p>
