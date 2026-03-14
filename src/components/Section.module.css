@@ -1,0 +1,22 @@
+.section {
+  padding: 4rem 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.label {
+  font-family: var(--font-mono);
+  font-size: clamp(11px, 1.5vw, 12px);
+  color: var(--text-3);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 2.5rem;
+}
+
+@media (max-width: 640px) {
+  .section {
+    padding: 3rem 0;
+  }
+  .label {
+    margin-bottom: 1.75rem;
+  }
+}
