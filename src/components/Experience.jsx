@@ -1,6 +1,5 @@
 import styles from './Section.module.css'
 import exp from './Experience.module.css'
-
 export default function Experience({ t }) {
   return (
     <section id="experience" className={styles.section}>
@@ -17,16 +16,8 @@ export default function Experience({ t }) {
                 <span className={exp.company}>{job.company}</span>
                 <span className={exp.role}>{job.role}</span>
               </div>
-              <ul className={exp.bullets}>
-                {job.bullets.map((b, j) => (
-                  <li key={j}>{b}</li>
-                ))}
-              </ul>
-              <div className={exp.stack}>
-                {job.stack.map((s) => (
-                  <span key={s} className={exp.tag}>{s}</span>
-                ))}
-              </div>
+              <ul className={exp.bullets}>{job.bullets.map((b,j) => <li key={j}>{b}</li>)}</ul>
+              <div className={exp.stack}>{job.stack.map(s => <span key={s} className={exp.tag}>{s}</span>)}</div>
             </div>
           </div>
         ))}

@@ -1,0 +1,15 @@
+.section { padding: 4rem 0; border-bottom: 1px solid var(--border); }
+.grid { display: grid; grid-template-columns: 200px 1fr; gap: 3.5rem; align-items: start; }
+.photoCol { display: flex; justify-content: flex-start; }
+.photoWrap { width: 180px; height: 180px; border-radius: 12px; overflow: hidden; border: 1px solid var(--border); flex-shrink: 0; position: relative; background: var(--bg-subtle); }
+.photo { width: 100%; height: 100%; object-fit: cover; object-position: center 10%; display: block; }
+.placeholder { width: 100%; height: 100%; display: none; align-items: center; justify-content: center; position: absolute; top: 0; left: 0; }
+.initials { font-family: var(--font-serif); font-size: 3rem; font-weight: 300; color: var(--accent); font-style: italic; }
+.textCol { display: flex; flex-direction: column; gap: 1.5rem; padding-top: 0.25rem; }
+.label { font-family: var(--font-mono); font-size: clamp(11px,1.5vw,12px); color: var(--text-3); letter-spacing: 0.12em; text-transform: uppercase; }
+.text { font-size: clamp(14px,2vw,15px); color: var(--text-2); line-height: 1.85; }
+.stats { display: flex; gap: 2.5rem; flex-wrap: wrap; }
+.stat { display: flex; flex-direction: column; gap: 4px; }
+.value { font-family: var(--font-serif); font-size: clamp(1.8rem,4vw,2.4rem); font-weight: 300; color: var(--accent); line-height: 1; letter-spacing: -0.02em; }
+.statLabel { font-family: var(--font-mono); font-size: clamp(10px,1.4vw,11px); color: var(--text-3); letter-spacing: 0.04em; }
+@media (max-width: 700px) { .grid { grid-template-columns: 1fr; gap: 2rem; } .photoWrap { width: 130px; height: 130px; border-radius: 10px; } }

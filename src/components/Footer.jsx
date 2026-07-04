@@ -1,5 +1,4 @@
 import styles from './Footer.module.css'
-
 export default function Footer({ t }) {
   return (
     <footer className={styles.footer}>
@@ -10,7 +9,6 @@ export default function Footer({ t }) {
         <div className={styles.right}>
           <a href="https://github.com/JimmyTzuc" target="_blank" rel="noopener noreferrer" className={styles.link}>GitHub</a>
           <a href="mailto:stjimmytzuc@gmail.com" className={styles.link}>Email</a>
-          <a href="https://jimmytzuc.com" className={styles.link}>jimmytzuc.com</a>
         </div>
       </div>
     </footer>

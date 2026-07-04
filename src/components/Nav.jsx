@@ -1,43 +1,48 @@
 import { useState } from 'react'
+import { Link, useNavigate, useLocation } from 'react-router-dom'
 import styles from './Nav.module.css'
 
 const CV_URL = '/CV-Jimmy-Tzuc.pdf'
 
 export default function Nav({ t, theme, lang, toggleTheme, setLang }) {
   const [menuOpen, setMenuOpen] = useState(false)
+  const navigate = useNavigate()
+  const location = useLocation()
+
+  const isHome = location.pathname === '/'
 
   const scrollTo = (id) => {
-    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' })
     setMenuOpen(false)
+    if (!isHome) {
+      navigate('/')
+      setTimeout(() => document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 100)
+    } else {
+      document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    }
   }
 
   const navItems = [
-    { id: 'about',         label: t.nav.about },
-    { id: 'experience',    label: t.nav.experience },
-    { id: 'skills',        label: t.nav.skills },
-    { id: 'certifications',label: t.nav.certifications },
+    { id: 'about',          label: t.nav.about },
+    { id: 'experience',     label: t.nav.experience },
+    { id: 'skills',         label: t.nav.skills },
+    { id: 'certifications', label: t.nav.certifications },
   ]
 
   return (
     <>
       <nav className={styles.nav}>
-        <button className={styles.logo} onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
-          jt
-        </button>
+        <Link to="/" className={styles.logoBtn}>
+          <img src="/logo.svg" alt="Jimmy Tzuc" className={styles.logoImg} />
+        </Link>
 
-        {/* Desktop links */}
         <div className={styles.links}>
           {navItems.map(({ id, label }) => (
-            <button key={id} className={styles.link} onClick={() => scrollTo(id)}>
-              {label}
-            </button>
+            <button key={id} className={styles.link} onClick={() => scrollTo(id)}>{label}</button>
           ))}
-          <a
-            href={CV_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.cvLink}
-          >
+          <Link to="/notes" className={`${styles.link} ${location.pathname.startsWith('/notes') ? styles.linkActive : ''}`}>
+            {t.nav.notes}
+          </Link>
+          <a href={CV_URL} target="_blank" rel="noopener noreferrer" className={styles.cvLink}>
             <svg width="13" height="13" viewBox="0 0 13 13" fill="none">
               <path d="M6.5 1v8M3.5 6.5L6.5 9.5l3-3M1.5 11.5h10" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/>
             </svg>
@@ -47,11 +52,10 @@ export default function Nav({ t, theme, lang, toggleTheme, setLang }) {
 
         <div className={styles.controls}>
           <div className={styles.langToggle}>
-            <button className={`${styles.langBtn} ${lang === 'es' ? styles.langActive : ''}`} onClick={() => setLang('es')}>ES</button>
+            <button className={`${styles.langBtn} ${lang==='es'?styles.langActive:''}`} onClick={()=>setLang('es')}>ES</button>
             <span className={styles.langDivider}>/</span>
-            <button className={`${styles.langBtn} ${lang === 'en' ? styles.langActive : ''}`} onClick={() => setLang('en')}>EN</button>
+            <button className={`${styles.langBtn} ${lang==='en'?styles.langActive:''}`} onClick={()=>setLang('en')}>EN</button>
           </div>
-
           <button className={styles.themeBtn} onClick={toggleTheme} aria-label="Toggle theme">
             {theme === 'dark' ? (
               <svg width="15" height="15" viewBox="0 0 15 15" fill="none">
@@ -71,7 +75,6 @@ export default function Nav({ t, theme, lang, toggleTheme, setLang }) {
               </svg>
             )}
           </button>
-
           <button className={styles.menuBtn} onClick={() => setMenuOpen(o => !o)} aria-label="Toggle menu">
             {menuOpen ? (
               <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
@@ -89,20 +92,12 @@ export default function Nav({ t, theme, lang, toggleTheme, setLang }) {
         </div>
       </nav>
 
-      {/* Mobile drawer */}
       <div className={`${styles.drawer} ${menuOpen ? styles.drawerOpen : ''}`}>
         {navItems.map(({ id, label }) => (
-          <button key={id} className={styles.drawerLink} onClick={() => scrollTo(id)}>
-            {label}
-          </button>
+          <button key={id} className={styles.drawerLink} onClick={() => scrollTo(id)}>{label}</button>
         ))}
-        <a
-          href={CV_URL}
-          target="_blank"
-          rel="noopener noreferrer"
-          className={styles.drawerCvLink}
-          onClick={() => setMenuOpen(false)}
-        >
+        <Link to="/notes" className={styles.drawerLink} onClick={() => setMenuOpen(false)}>{t.nav.notes}</Link>
+        <a href={CV_URL} target="_blank" rel="noopener noreferrer" className={styles.drawerCvLink} onClick={() => setMenuOpen(false)}>
           <svg width="13" height="13" viewBox="0 0 13 13" fill="none">
             <path d="M6.5 1v8M3.5 6.5L6.5 9.5l3-3M1.5 11.5h10" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/>
           </svg>
