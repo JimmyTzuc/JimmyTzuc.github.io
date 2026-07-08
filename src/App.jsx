@@ -11,6 +11,7 @@ import Certifications from './components/Certifications'
 import NotesList from './components/NotesList'
 import NoteDetail from './components/NoteDetail'
 import Footer from './components/Footer'
+import ScrollToTop from './components/ScrollToTop'
 import styles from './App.module.css'
 
 export default function App() {
@@ -44,6 +45,7 @@ export default function App() {
         </Routes>
       </main>
       <Footer t={t} />
+      <ScrollToTop />
     </div>
   )
 }
